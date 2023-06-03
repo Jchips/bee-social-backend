@@ -11,16 +11,27 @@ const postSchema = new Schema({
   },
   text: {
     type: String,
+    required: true,
+    default: ''
   },
-  user: {
+  uid: {
     type: String,
     required: true
   },
-  date: {
+  dateCreated: {
     type: Date,
     required: true,
     default: Date.now()
-  }
+  },
+  /* TODO (possible future feature)
+  carousel {
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  carouselPosts: {
+    type: Array
+  } */
 });
 
 module.exports = mongoose.model('Post', postSchema);
