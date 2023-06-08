@@ -34,6 +34,7 @@ app.patch('/posts/:id', postHandler.editPost);
 
 // users
 app.get('/users', userHandler.getUsers);
+app.get('/users/:id', userHandler.getOneUser);
 app.post('/users', userHandler.addUser);
 app.patch('/users/:id', userHandler.updateUser);
 
