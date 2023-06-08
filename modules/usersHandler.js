@@ -9,7 +9,16 @@ userHandler.getUsers = async function(req, res, next) {
     let allUsers = await User.find();
     res.status(200).json(allUsers);
   } catch (err) {
-    // res.status(500).json(err.message);
+    next(err);
+  }
+}
+
+userHandler.getOneUser = async function(req, res, next) {
+  const { id } = req.params;
+  try {
+    let user = await User.findById(id);
+    res.status(200).json(user);
+  } catch (err) {
     next(err);
   }
 }
