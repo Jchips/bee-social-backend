@@ -24,15 +24,13 @@ app.get('/', (req, res) => {
   res.status(200).send('Your default route is working');
 });
 
-// ROUTES
-
-// posts
+// post routes
 app.get('/posts', postHandler.getPosts);
 app.post('/posts', postHandler.addPost);
 app.delete('/posts/:id', postHandler.deletePost);
 app.patch('/posts/:id', postHandler.editPost);
 
-// users
+// user routes
 app.get('/users', userHandler.getUsers);
 app.get('/users/:id', userHandler.getOneUser);
 app.post('/users', userHandler.addUser);
