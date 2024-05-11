@@ -3,13 +3,13 @@ const Post = require('../models/post');
 
 const postHandler = {};
 
-postHandler.getPosts = async function(req, res, next) {
+postHandler.getPosts = async function (req, res, next) {
   try {
     let queryObj = {};
 
     // If uid was queried, then returns all the posts with that uid
     if (req.query.uid) {
-      queryObj = {uid: req.query.uid}
+      queryObj = { uid: req.query.uid }
     }
 
     let response = await Post.find(queryObj);
@@ -19,7 +19,8 @@ postHandler.getPosts = async function(req, res, next) {
   }
 }
 
-postHandler.addPost = async function(req, res, next) {
+// Currently being unused (switched to Firestore database)
+postHandler.addPost = async function (req, res, next) {
   let newPost = req.body;
   try {
     let createdPost = await Post.create(newPost);
@@ -29,19 +30,19 @@ postHandler.addPost = async function(req, res, next) {
   }
 }
 
-postHandler.editPost = async function(req, res, next) {
+postHandler.editPost = async function (req, res, next) {
   let { id } = req.params;
   let postToUpdate = req.body;
 
   try {
-    let updatedPost = await Post.findByIdAndUpdate(id, postToUpdate, {new: true, overwrite: true}) // testing
+    let updatedPost = await Post.findByIdAndUpdate(id, postToUpdate, { new: true, overwrite: true }) // testing
     res.status(201).json(updatedPost);
   } catch (err) {
     next(err);
   }
 }
 
-postHandler.deletePost = async function(req, res, next) {
+postHandler.deletePost = async function (req, res, next) {
   let { id } = req.params;
 
   try {
