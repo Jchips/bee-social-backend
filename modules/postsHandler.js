@@ -44,10 +44,19 @@ postHandler.editPost = async function (req, res, next) {
 
 postHandler.deletePost = async function (req, res, next) {
   let { id } = req.params;
-
   try {
     await Post.findByIdAndDelete(id);
-    res.status(200).send('Post deleted');
+    res.status(200).json({ message: 'Post deleted' });
+  } catch (err) {
+    next(err);
+  }
+}
+
+postHandler.deleteMany = async function (req, res, next) {
+  let { id } = req.params;
+  try {
+    await Post.deleteMany({ uid: id });
+    res.status(200).json({ message: 'Posts deleted' });
   } catch (err) {
     next(err);
   }

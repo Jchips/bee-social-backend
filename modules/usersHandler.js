@@ -53,4 +53,14 @@ userHandler.updateUser = async function (req, res, next) {
   }
 }
 
+userHandler.deleteUser = async function (req, res, next) {
+  try {
+    let { id } = req.params;
+    let deletedUser = await User.deleteOne({ uid: id });
+    res.status(200).json({ deletedUser });
+  } catch (err) {
+    next(err);
+  }
+}
+
 module.exports = userHandler;
