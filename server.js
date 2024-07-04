@@ -29,12 +29,14 @@ app.get('/posts', postHandler.getPosts);
 app.post('/posts', postHandler.addPost);
 app.delete('/posts/:id', postHandler.deletePost);
 app.patch('/posts/:id', postHandler.editPost);
+app.delete('/posts/delete-all/:id', postHandler.deleteMany);
 
 // user routes
 app.get('/users', userHandler.getUsers);
 app.get('/users/:id', userHandler.getOneUser);
 app.post('/users', userHandler.addUser);
 app.patch('/users/:id', userHandler.updateUser);
+app.delete('/users/:id', userHandler.deleteUser);
 
 // Catch all route (error handling)
 app.get('*', (req, res) => {
